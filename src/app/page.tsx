@@ -185,13 +185,13 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <div className="relative h-80 w-full">
+              <div className="relative h-96 w-full">
                 {aboutImage && (
                   <Image
                     src="/hero.jpg"
                     alt={aboutImage.description}
                     fill
-                    className="object-cover rounded-lg"
+                    className="object-contain rounded-lg"
                     data-ai-hint={aboutImage.imageHint}
                   />
                 )}
