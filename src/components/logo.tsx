@@ -5,7 +5,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-primary">
       <BrainCircuit className="h-6 w-6" />
-      <span className={className}>MindCare Pakistan</span>
+      <span className={className}>Mind Oasis</span>
     </Link>
   );
 }

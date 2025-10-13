@@ -28,7 +28,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="py-20 text-center bg-secondary">
           <div className="container">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">About MindCare Pakistan</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">About Mind Oasis</h1>
             <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground md:text-xl">
               Your trusted partner in the journey towards mental wellness. We are dedicated to connecting individuals across Pakistan with qualified, compassionate, and culturally sensitive mental health professionals.
             </p>
@@ -100,7 +100,7 @@ export default function AboutPage() {
       </main>
       <footer className="border-t bg-secondary">
         <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} MindCare Pakistan. A Hackathon Project.</p>
+          <p>&copy; {new Date().getFullYear()} Mind Oasis. A Hackathon Project.</p>
         </div>
       </footer>
     </div>

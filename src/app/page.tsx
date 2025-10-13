@@ -51,7 +51,7 @@ export default function Home() {
   const testimonials = [
     {
       quote:
-        "MindCare helped me find a therapist who truly understands me. The process was simple and stress-free.",
+        "Mind Oasis helped me find a therapist who truly understands me. The process was simple and stress-free.",
       author: "Aisha K.",
       location: "Lahore",
       avatar: "https://picsum.photos/seed/user1/100/100",
@@ -148,7 +148,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  About MindCare Pakistan
+                  About Mind Oasis
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground">
                   We are dedicated to breaking down barriers to mental
@@ -207,12 +207,12 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="mb-12">
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-left">
+            <div className="mb-12 text-left">
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Trusted by Users Across Pakistan
               </h2>
-              <p className="mt-4 max-w-2xl text-lg text-muted-foreground text-left">
-                See how MindCare is helping people find the support they need.
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+                See how Mind Oasis is helping people find the support they need.
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -279,7 +279,7 @@ export default function Home() {
       <footer className="border-t bg-secondary">
         <div className="container py-6 text-center text-muted-foreground text-sm">
           <p>
-            &copy; {new Date().getFullYear()} MindCare Pakistan. A Hackathon
+            &copy; {new Date().getFullYear()} Mind Oasis. A Hackathon
             Project.
           </p>
         </div>

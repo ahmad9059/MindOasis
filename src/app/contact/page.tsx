@@ -73,7 +73,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <CardTitle>Email Us</CardTitle>
-                            <a href="mailto:support@mindcare.pk" className="text-muted-foreground hover:text-primary">support@mindcare.pk</a>
+                            <a href="mailto:support@mindoasis.pk" className="text-muted-foreground hover:text-primary">support@mindoasis.pk</a>
                         </div>
                     </CardHeader>
                 </Card>
@@ -93,7 +93,7 @@ export default function ContactPage() {
       </main>
        <footer className="border-t bg-secondary mt-12">
         <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} MindCare Pakistan. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Mind Oasis. All Rights Reserved.</p>
         </div>
       </footer>
     </div>

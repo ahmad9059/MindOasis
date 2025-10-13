@@ -56,7 +56,7 @@ export default function BlogPage() {
       <Header />
       <main className="container py-12">
         <div className="text-center mb-12">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">MindCare Blog</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">Mind Oasis Blog</h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground md:text-xl">
                 Insights, stories, and advice on mental health and wellness from our experts.
             </p>
@@ -98,7 +98,7 @@ export default function BlogPage() {
       </main>
       <footer className="border-t bg-secondary">
         <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} MindCare Pakistan. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Mind Oasis. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
