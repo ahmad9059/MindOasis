@@ -25,20 +25,21 @@ function SearchPageContent() {
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // Local state for the input, controlled directly by the user typing.
-  const [inputValue, setInputValue] = useState(searchParams.get('q') || '');
-  
-  // The active search term, only updated when the form is submitted.
+  // The active search term from the URL.
   const searchTerm = searchParams.get('q') || '';
+  
+  // Local state for the input, controlled directly by the user typing.
+  // This is initialized with the searchTerm from the URL to keep them in sync.
+  const [inputValue, setInputValue] = useState(searchTerm);
 
-  // Sync input field if URL is changed directly (e.g. back/forward browser buttons)
+  // Sync input field if URL changes (e.g. back/forward browser buttons)
   useEffect(() => {
     setInputValue(searchTerm);
   }, [searchTerm]);
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
     if (inputValue) {
       params.set('q', inputValue);
     } else {
@@ -46,7 +47,10 @@ function SearchPageContent() {
     }
     
     startTransition(() => {
-        router.replace(`${pathname}?${params.toString()}`);
+      // Replace the URL without reloading the page.
+      // The re-render will happen, but because `inputValue` controls the input,
+      // focus will not be lost.
+      router.replace(`${pathname}?${params.toString()}`);
     });
   };
 
