@@ -13,12 +13,6 @@
       "imageHint": "serene landscape"
     },
     {
-      "id": "hero-background-2",
-      "description": "Illustration of a person on a bar chart with coins",
-      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-3.png",
-      "imageHint": "finance growth"
-    },
-    {
       "id": "about-us-image",
       "description": "Two people sitting and talking in a comfortable setting",
       "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop",
