@@ -90,7 +90,7 @@ export function Chatbot() {
           size="icon"
           className="h-16 w-16 rounded-full shadow-lg"
         >
-          {isOpen ? <X className="h-8 w-8" /> : <Bot className="h-8 w-8" />}
+          {isOpen ? <X className="h-10 w-10" /> : <Bot className="h-10 w-10" />}
           <span className="sr-only">Toggle Chat</span>
         </Button>
       </div>
