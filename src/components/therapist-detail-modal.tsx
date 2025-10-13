@@ -222,14 +222,14 @@ export function TherapistDetailModal({
           </Accordion>
         </div>
 
-        <div className="p-6 mt-auto bg-card border-t flex flex-col sm:flex-row gap-2 items-center">
+        <div className="p-6 mt-auto bg-card border-t flex flex-col sm:flex-row gap-4 items-center">
           <div className="flex-1 text-center sm:text-left">
             <div className="text-xl font-bold text-primary">
               {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             </div>
             <div className="text-xs text-muted-foreground">per session</div>
           </div>
-          <div className="flex-1 flex flex-col  sm:flex-row gap-2 w-full">
+          <div className="flex-1 w-full flex flex-col sm:flex-row gap-2">
             {therapist.phone && (
               <Button asChild className="flex-1" size="lg">
                 <a href={`tel:${therapist.phone}`}>
