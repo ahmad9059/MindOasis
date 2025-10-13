@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useTransition, useRef, useEffect } from 'react';
@@ -79,14 +78,14 @@ export function Chatbot() {
         </Button>
       </div>
       {isOpen && (
-        <Card className="fixed bottom-24 right-6 z-50 flex w-full max-w-sm flex-col shadow-2xl rounded-lg">
+        <Card className="fixed bottom-24 right-6 z-50 flex w-full max-w-sm flex-col shadow-2xl rounded-lg h-[600px]">
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-2">
               <Bot className="h-6 w-6 text-primary" />
               <CardTitle className="text-lg">AI Assistant</CardTitle>
             </div>
           </CardHeader>
-          <CardContent ref={chatContainerRef} className="h-96 flex-1 overflow-y-auto p-4 space-y-4">
+          <CardContent ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
