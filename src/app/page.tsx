@@ -1,5 +1,3 @@
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -95,15 +93,13 @@ export default function Home() {
               </Button>
             </div>
             <div className="relative w-full h-[400px] md:h-[500px]">
-              
-                <Image
-                  src="/umbrella-girl.png"
-                  alt="A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness."
-                  fill
-                  className="object-contain object-bottom"
-                  priority
-                />
-              
+              <Image
+                src="/umbrella-girl.png"
+                alt="A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness."
+                fill
+                className="object-contain object-bottom"
+                priority
+              />
             </div>
           </div>
         </section>
@@ -192,7 +188,7 @@ export default function Home() {
               <div className="relative h-80 w-full">
                 {aboutImage && (
                   <Image
-                    src={aboutImage.imageUrl}
+                    src="/hero.jpg"
                     alt={aboutImage.description}
                     fill
                     className="object-cover rounded-lg"
@@ -216,12 +212,14 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-               {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial, index) => (
                 <Card key={index} className="p-6">
                   <CardContent className="p-0 flex items-start gap-4">
                     <Avatar className="w-12 h-12 flex-shrink-0">
                       <AvatarImage src={testimonial.avatar} />
-                      <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                      <AvatarFallback>
+                        {testimonial.author.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
                       <p className="text-foreground italic mb-4">
