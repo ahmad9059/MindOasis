@@ -222,7 +222,7 @@ export function TherapistDetailModal({
           </Accordion>
         </div>
 
-        <div className="p-6 mt-auto bg-card border-t flex flex-wrap gap-4 items-center">
+        <div className="p-6 mt-auto bg-card border-t flex flex-wrap gap-4 items-center rounded-b-lg">
           <div className="flex-1">
             <div className="text-xl font-bold text-primary">
               {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
