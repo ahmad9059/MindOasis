@@ -22,7 +22,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
             <Button asChild>
                 <Link href="/search">
                 Find a Therapist <ArrowRight className="ml-2 h-4 w-4" />
