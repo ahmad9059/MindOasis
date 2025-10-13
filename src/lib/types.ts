@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export interface Therapist {
   id: string;
   name: string;
@@ -37,3 +39,21 @@ export const feeRanges = [
 ];
 
 export const consultationModes = ['In-person', 'Online'];
+
+
+// Schemas for Chatbot
+const ChatMessageSchema = z.object({
+  role: z.enum(['user', 'assistant']),
+  content: z.string(),
+});
+
+export const RecommendTherapistInputSchema = z.object({
+  query: z.string().describe("The user's latest message or question."),
+  history: z.array(ChatMessageSchema).describe('The conversation history so far.'),
+});
+export type RecommendTherapistInput = z.infer<typeof RecommendTherapistInputSchema>;
+
+export const RecommendTherapistOutputSchema = z.object({
+  recommendation: z.string().describe("The AI's response to the user's query."),
+});
+export type RecommendTherapistOutput = z.infer<typeof RecommendTherapistOutputSchema>;

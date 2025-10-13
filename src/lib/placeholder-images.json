@@ -9,7 +9,7 @@
     {
       "id": "hero-background",
       "description": "Serene background for the landing page hero section",
-      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageUrl": "https://images.unsplash.com/photo-1579412690850-bd41cd0abc39?q=80&w=2070&auto=format&fit=crop",
       "imageHint": "serene landscape"
     },
     {
@@ -20,14 +20,14 @@
     },
     {
       "id": "about-us-image",
-      "description": "Illustration of person with upward arrow and coins",
-      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-2.png",
-      "imageHint": "financial future"
+      "description": "Two people sitting and talking in a comfortable setting",
+      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop",
+      "imageHint": "conversation therapy"
     },
     {
       "id": "cta-image",
       "description": "Abstract background for call to action",
-      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-1.png",
+      "imageUrl": "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2029&auto=format&fit=crop",
       "imageHint": "abstract background"
     }
   ]

@@ -2,3 +2,4 @@ import { config } from 'dotenv';
 config();
 
 import '@/ai/flows/generate-profile-summary.ts';
+import '@/ai/flows/recommend-therapist.ts';

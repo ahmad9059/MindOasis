@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Logo } from '@/components/logo';
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background-2');
+  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
   const aboutImage = PlaceHolderImages.find((img) => img.id === 'about-us-image');
   const ctaImage = PlaceHolderImages.find((img) => img.id === 'cta-image');
 
@@ -34,7 +34,7 @@ export default function Home() {
 
   const testimonials = [
     {
-      quote: "Mind Oasis helped me find a therapist who truly understands me. The process was simple and stress-free.",
+      quote: "MindCare helped me find a therapist who truly understands me. The process was simple and stress-free.",
       author: "Aisha K.",
       location: "Lahore"
     },
@@ -68,14 +68,14 @@ export default function Home() {
           <div className="container grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-foreground">
-                Your Financial Passport for the Informal Economy
+                Find Your Path to Mental Wellness
               </h1>
               <p className="mt-6 text-lg text-muted-foreground md:text-xl">
                 Discover compassionate and qualified mental health professionals across Pakistan. Start your journey towards a healthier mind today.
               </p>
               <Button asChild size="lg" className="mt-8">
                 <Link href="/search">
-                  Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
+                  Find a Therapist <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
@@ -103,7 +103,7 @@ export default function Home() {
                 Find Your Therapist in 3 Simple Steps
               </h2>
               <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                Our secure platform makes it easy to find your ideal mental health professional.
+                Our platform makes it easy to find the right mental health professional for you.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -125,8 +125,8 @@ export default function Home() {
           <div className="container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Unlock Your Financial Future</h2>
-                <p className="mt-4 text-lg text-muted-foreground">We are dedicated to breaking down barriers to mental healthcare, offering a platform that is accessible, confidential, and culturally sensitive.</p>
+                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">About MindCare Pakistan</h2>
+                <p className="mt-4 text-lg text-muted-foreground">We are dedicated to breaking down barriers to mental healthcare, offering a platform that is accessible, confidential, and culturally sensitive for everyone in Pakistan.</p>
                 <ul className="mt-6 space-y-4">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
@@ -138,14 +138,14 @@ export default function Home() {
                   <li className="flex items-start gap-3">
                     <HeartHandshake className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold">Seamless Document Upload</h3>
+                      <h3 className="font-semibold">Confidential & Secure</h3>
                       <p className="text-muted-foreground">Our process prioritizes your privacy and security every step of the way.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold">Intelligent Transaction Categorization</h3>
+                      <h3 className="font-semibold">Community & Support</h3>
                       <p className="text-muted-foreground">Join a supportive community and access resources to help you on your journey.</p>
                     </div>
                   </li>
@@ -165,7 +165,7 @@ export default function Home() {
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Trusted by Users Across Pakistan</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">See how Mind Oasis is helping people find the support they need.</p>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">See how MindCare is helping people find the support they need.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
@@ -190,11 +190,11 @@ export default function Home() {
                         <div className="absolute inset-0 bg-primary/80"></div>
                     </div>
                     <div className="relative p-12 md:p-16 text-center">
-                        <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to Build Your Credit?</h2>
-                        <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/80">Take the first step towards a better future. Find a therapist and start your journey today. It's free and takes only 2 minutes.</p>
+                        <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to Take the First Step?</h2>
+                        <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/80">Find a therapist and start your journey to mental wellness today. Our platform is free to use.</p>
                         <Button asChild variant="secondary" size="lg" className="mt-8">
                             <Link href="/search">
-                                Sign up for free <ArrowRight className="ml-2 h-5 w-5" />
+                                Start Your Search <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                     </div>
@@ -205,7 +205,7 @@ export default function Home() {
 
       <footer className="border-t bg-secondary">
         <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. A Hackathon Project.</p>
+          <p>&copy; {new Date().getFullYear()} MindCare Pakistan. A Hackathon Project.</p>
         </div>
       </footer>
     </div>
