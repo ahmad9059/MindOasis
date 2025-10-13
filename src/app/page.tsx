@@ -207,7 +207,7 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="mb-12 text-left">
+            <div className="text-left mb-12">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Trusted by Users Across Pakistan
               </h2>
