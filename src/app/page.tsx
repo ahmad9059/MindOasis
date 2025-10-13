@@ -145,7 +145,7 @@ export default function Home() {
               </div>
               <div className="relative h-80 w-full">
                 {aboutImage && (
-                  <Image src={aboutImage.imageUrl} alt={aboutImage.description} fill className="object-contain" data-ai-hint={aboutImage.imageHint}/>
+                  <Image src={aboutImage.imageUrl} alt={aboutImage.description} fill className="object-cover rounded-lg" data-ai-hint={aboutImage.imageHint}/>
                 )}
               </div>
             </div>

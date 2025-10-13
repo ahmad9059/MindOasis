@@ -8,9 +8,9 @@
     },
     {
       "id": "hero-background",
-      "description": "Serene background for the landing page hero section",
-      "imageUrl": "https://images.unsplash.com/photo-1579412690850-bd41cd0abc39?q=80&w=2070&auto=format&fit=crop",
-      "imageHint": "serene landscape"
+      "description": "A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness.",
+      "imageUrl": "/hero-image.png",
+      "imageHint": "serene comfort protection"
     },
     {
       "id": "about-us-image",
