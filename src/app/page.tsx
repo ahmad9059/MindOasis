@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -18,9 +19,6 @@ import { Header } from "@/components/header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find(
-    (img) => img.id === "hero-background",
-  );
   const aboutImage = PlaceHolderImages.find(
     (img) => img.id === "about-us-image",
   );
@@ -97,16 +95,15 @@ export default function Home() {
               </Button>
             </div>
             <div className="relative w-full h-[400px] md:h-[500px]">
-              {heroImage && (
+              
                 <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
+                  src="/umbrella-girl.png"
+                  alt="A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness."
                   fill
                   className="object-contain object-bottom"
-                  data-ai-hint={heroImage.imageHint}
                   priority
                 />
-              )}
+              
             </div>
           </div>
         </section>
@@ -210,32 +207,32 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <div className="mb-12">
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-left">
                 Trusted by Users Across Pakistan
               </h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground text-left">
                 See how MindCare is helping people find the support they need.
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
                 <Card key={index} className="p-6">
-                  <CardContent className="p-0">
-                     <p className="text-foreground italic mb-4">
-                      "{testimonial.quote}"
-                    </p>
-                    <div className="flex items-center gap-4">
-                       <Avatar className="w-12 h-12">
-                          <AvatarImage src={testimonial.avatar} />
-                          <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                      </Avatar>
-                      <div>
+                  <CardContent className="p-0 flex items-start gap-4">
+                     <Avatar className="w-12 h-12 flex-shrink-0">
+                        <AvatarImage src={testimonial.avatar} />
+                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <p className="text-foreground italic mb-4">
+                        "{testimonial.quote}"
+                        </p>
+                        <div>
                         <p className="font-semibold">{testimonial.author}</p>
                         <p className="text-sm text-muted-foreground">
-                          {testimonial.location}
+                            {testimonial.location}
                         </p>
-                      </div>
+                        </div>
                     </div>
                   </CardContent>
                 </Card>

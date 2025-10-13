@@ -7,12 +7,6 @@
       "imageHint": "portrait professional"
     },
     {
-      "id": "hero-background",
-      "description": "A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness.",
-      "imageUrl": "https://picsum.photos/seed/hero/600/600",
-      "imageHint": "serene comfort protection"
-    },
-    {
       "id": "about-us-image",
       "description": "Two people sitting and talking in a comfortable setting",
       "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop",
