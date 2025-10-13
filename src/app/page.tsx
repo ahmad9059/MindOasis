@@ -91,13 +91,13 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
-            <div className="relative h-64 md:h-auto md:w-full aspect-square">
+            <div className="relative w-full h-[400px] md:h-[500px]">
               {heroImage && (
                 <Image
                   src="/umbrella-girl.png"
                   alt={heroImage.description}
                   fill
-                  className="object-contain"
+                  className="object-contain object-bottom"
                   data-ai-hint={heroImage.imageHint}
                   priority
                 />
