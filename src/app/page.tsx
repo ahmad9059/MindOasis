@@ -207,11 +207,11 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="text-left mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Trusted by Users Across Pakistan
               </h2>
-              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 See how Mind Oasis is helping people find the support they need.
               </p>
             </div>
@@ -219,20 +219,20 @@ export default function Home() {
               {testimonials.map((testimonial, index) => (
                 <Card key={index} className="p-6">
                   <CardContent className="p-0 flex items-start gap-4">
-                     <Avatar className="w-12 h-12 flex-shrink-0">
-                        <AvatarImage src={testimonial.avatar} />
-                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                    <Avatar className="w-12 h-12 flex-shrink-0">
+                      <AvatarImage src={testimonial.avatar} />
+                      <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <div>
-                        <p className="text-foreground italic mb-4">
+                    <div className="flex-1">
+                      <p className="text-foreground italic mb-4">
                         "{testimonial.quote}"
-                        </p>
-                        <div>
+                      </p>
+                      <div>
                         <p className="font-semibold">{testimonial.author}</p>
                         <p className="text-sm text-muted-foreground">
-                            {testimonial.location}
+                          {testimonial.location}
                         </p>
-                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
