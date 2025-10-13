@@ -11,6 +11,24 @@
       "description": "Serene background for the landing page hero section",
       "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
       "imageHint": "serene landscape"
+    },
+    {
+      "id": "hero-background-2",
+      "description": "Illustration of a person on a bar chart with coins",
+      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-3.png",
+      "imageHint": "finance growth"
+    },
+    {
+      "id": "about-us-image",
+      "description": "Illustration of person with upward arrow and coins",
+      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-2.png",
+      "imageHint": "financial future"
+    },
+    {
+      "id": "cta-image",
+      "description": "Abstract background for call to action",
+      "imageUrl": "https://storage.googleapis.com/aifirebase-static-content/landing-page-images/hisab-1.png",
+      "imageHint": "abstract background"
     }
   ]
 }

@@ -16,7 +16,7 @@ export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) 
   const avatar = PlaceHolderImages.find((img) => img.id === 'therapist-avatar');
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card">
       <CardHeader className="flex flex-row items-start gap-4 p-4">
         {avatar && (
           <Image
@@ -52,7 +52,7 @@ export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) 
             ))}
         </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center bg-muted/50">
+      <CardFooter className="p-4 pt-0 flex justify-between items-center bg-secondary/50">
         <div className="font-semibold text-primary">
             {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             <span className="text-xs font-normal text-muted-foreground">/session</span>

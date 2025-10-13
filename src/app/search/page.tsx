@@ -1,9 +1,9 @@
 
 'use client';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useState, useMemo, useTransition } from 'react';
 
 import therapistsData from '@/data/therapists.json';
 import type { Therapist, FilterOptions } from '@/lib/types';
@@ -16,12 +16,30 @@ import { TherapistDetailModal } from '@/components/therapist-detail-modal';
 import Loading from './loading';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Filter } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Filter, Search } from 'lucide-react';
+import { useDebounce } from '@/hooks/use-debounce';
 
 function SearchPageContent() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const debouncedQuery = useDebounce(query, 300);
+
+  useEffect(() => {
+    startTransition(() => {
+      const params = new URLSearchParams(window.location.search);
+      if (debouncedQuery) {
+        params.set('q', debouncedQuery);
+      } else {
+        params.delete('q');
+      }
+      router.replace(`${pathname}?${params.toString()}`);
+    });
+  }, [debouncedQuery, router, pathname]);
 
   const filterOptions = useMemo((): FilterOptions => {
     const cities = new Map<string, number>();
@@ -120,29 +138,18 @@ function SearchPageContent() {
     setSelectedTherapist(null);
   };
 
-  const SearchBar = () => {
-    const [query, setQuery] = useState(searchParams.get('q') || '');
-    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const params = new URLSearchParams(searchParams.toString());
-      if (query) {
-        params.set('q', query);
-      } else {
-        params.delete('q');
-      }
-      window.history.pushState(null, '', `?${params.toString()}`);
-    }
-
+  const SmartSearchBar = () => {
     return (
-      <form onSubmit={handleSearch} className="w-full">
+      <div className="relative w-full">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search by name, expertise, or specialty..."
-          className="w-full"
+          placeholder="Smart Search: by name, expertise, or issue..."
+          className="w-full pl-10"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-      </form>
+      </div>
     );
   }
 
@@ -151,10 +158,10 @@ function SearchPageContent() {
       <Header />
       <main>
         <div className="container py-8">
-          <div className="flex flex-col gap-8 lg:flex-row">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
             {/* Mobile filter sheet */}
             <div className="lg:hidden flex justify-between items-center gap-4">
-                <div className="flex-grow"><SearchBar /></div>
+                <div className="flex-grow"><SmartSearchBar /></div>
                 <Sheet>
                     <SheetTrigger asChild>
                     <Button variant="outline" className="shrink-0">
@@ -170,14 +177,16 @@ function SearchPageContent() {
             
             {/* Desktop filters */}
             <aside className="hidden lg:block lg:w-1/4 xl:w-1/5 sticky top-20 self-start">
-              <TherapistFilters filterOptions={filterOptions} className="h-[calc(100vh-6rem)]"/>
+              <TherapistFilters filterOptions={filterOptions} className="h-auto max-h-[calc(100vh-6rem)]"/>
             </aside>
 
             {/* Results */}
             <div className="w-full lg:w-3/4 xl:w-4/5">
               <div className="mb-6 space-y-4">
-                <div className="hidden lg:block"><SearchBar /></div>
-                <h2 className="text-xl font-semibold">{filteredTherapists.length} therapists found</h2>
+                <div className="hidden lg:block"><SmartSearchBar /></div>
+                <h2 className="text-xl font-semibold">
+                  {isPending ? 'Searching...' : `${filteredTherapists.length} therapists found`}
+                </h2>
               </div>
               <TherapistList therapists={filteredTherapists} onViewDetails={handleViewDetails} />
             </div>
