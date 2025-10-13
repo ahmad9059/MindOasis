@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle, FileText, Bot, HandHelping, Users, HeartHandsh
 import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
+import { Header } from '@/components/header';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
@@ -52,16 +53,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
-        <div className="container flex h-16 items-center justify-between">
-          <Logo />
-          <Button asChild>
-            <Link href="/search">
-              Find a Therapist <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-      </header>
+      <Header />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative w-full py-20 md:py-32">
