@@ -9,7 +9,7 @@
     {
       "id": "hero-background",
       "description": "A person finding comfort and peace under an umbrella, symbolizing protection and care in mental wellness.",
-      "imageUrl": "/hero-image.png",
+      "imageUrl": "https://picsum.photos/seed/hero/600/600",
       "imageHint": "serene comfort protection"
     },
     {
