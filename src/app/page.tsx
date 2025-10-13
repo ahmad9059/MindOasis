@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -209,29 +210,33 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="text-left mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Trusted by Users Across Pakistan
               </h2>
-              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 See how MindCare is helping people find the support they need.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6 text-center">
-                  <CardContent className="p-0 flex flex-col items-center">
-                    <Avatar className="w-16 h-16 mb-4">
-                        <AvatarImage src={testimonial.avatar} />
-                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <p className="text-foreground italic mb-4">
+                <Card key={index} className="p-6">
+                  <CardContent className="p-0">
+                     <p className="text-foreground italic mb-4">
                       "{testimonial.quote}"
                     </p>
-                    <p className="font-semibold">{testimonial.author}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.location}
-                    </p>
+                    <div className="flex items-center gap-4">
+                       <Avatar className="w-12 h-12">
+                          <AvatarImage src={testimonial.avatar} />
+                          <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-semibold">{testimonial.author}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.location}
+                        </p>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
