@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Header } from "@/components/header";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(
@@ -54,18 +55,21 @@ export default function Home() {
         "MindCare helped me find a therapist who truly understands me. The process was simple and stress-free.",
       author: "Aisha K.",
       location: "Lahore",
+      avatar: "https://picsum.photos/seed/user1/100/100",
     },
     {
       quote:
         "The AI summaries are a game-changer. I could quickly get a sense of each therapist's approach and specialty.",
       author: "Bilal S.",
       location: "Karachi",
+      avatar: "https://picsum.photos/seed/user2/100/100",
     },
     {
       quote:
         "Finally, a platform that understands the mental health landscape in Pakistan. Highly recommended!",
       author: "Fatima Z.",
       location: "Islamabad",
+      avatar: "https://picsum.photos/seed/user3/100/100",
     },
   ];
 
@@ -94,7 +98,7 @@ export default function Home() {
             <div className="relative w-full h-[400px] md:h-[500px]">
               {heroImage && (
                 <Image
-                  src="/umbrella-girl.png"
+                  src={heroImage.imageUrl}
                   alt={heroImage.description}
                   fill
                   className="object-contain object-bottom"
@@ -215,12 +219,16 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6">
-                  <CardContent className="p-0">
-                    <p className="text-foreground italic">
+                <Card key={index} className="p-6 text-center">
+                  <CardContent className="p-0 flex flex-col items-center">
+                    <Avatar className="w-16 h-16 mb-4">
+                        <AvatarImage src={testimonial.avatar} />
+                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <p className="text-foreground italic mb-4">
                       "{testimonial.quote}"
                     </p>
-                    <p className="font-semibold mt-4">{testimonial.author}</p>
+                    <p className="font-semibold">{testimonial.author}</p>
                     <p className="text-sm text-muted-foreground">
                       {testimonial.location}
                     </p>
