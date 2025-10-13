@@ -222,23 +222,23 @@ export function TherapistDetailModal({
           </Accordion>
         </div>
 
-        <div className="p-6 mt-auto bg-card border-t flex flex-col sm:flex-row gap-4 items-center">
-          <div className="flex-1 text-center sm:text-left">
+        <div className="p-6 mt-auto bg-card border-t flex flex-wrap gap-4 items-center">
+          <div className="flex-1">
             <div className="text-xl font-bold text-primary">
               {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             </div>
             <div className="text-xs text-muted-foreground">per session</div>
           </div>
-          <div className="flex-1 w-full flex flex-col sm:flex-row gap-2">
+          <div className="flex gap-2">
             {therapist.phone && (
-              <Button asChild className="flex-1" size="lg">
+              <Button asChild>
                 <a href={`tel:${therapist.phone}`}>
                   <Phone className="mr-2 h-4 w-4" /> Call Now
                 </a>
               </Button>
             )}
             {therapist.email && (
-              <Button asChild variant="secondary" className="flex-1" size="lg">
+              <Button asChild variant="secondary">
                 <a href={`mailto:${therapist.email}`}>
                   <Mail className="mr-2 h-4 w-4" /> Send Email
                 </a>
