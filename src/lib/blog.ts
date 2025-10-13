@@ -1,3 +1,4 @@
+
 export const blogPosts = [
   {
     id: 1,
@@ -62,7 +63,7 @@ At Mind Oasis, we believe that everyone deserves access to compassionate care. B
     date: 'October 15, 2023',
     author: 'Fatima Ali',
     excerpt: 'Mindfulness is the practice of being present in the moment. This simple guide will walk you through the basics and help you incorporate mindfulness into your daily routine.',
-    image: 'https://images.unsplash.com/photo-1474418397713-7e15e4d5e156?q=80&w=2072&auto=format&fit=crop',
+    image: 'https://picsum.photos/seed/blog3/600/400',
     imageHint: 'person walking in nature',
     tags: ['Mindfulness', 'Wellness', 'Self-Care'],
     content: `
@@ -97,7 +98,7 @@ Incorporating these small practices into your day can reduce stress, improve foc
     date: 'October 10, 2023',
     author: 'Dr. Ayesha Khan',
     excerpt: 'Every relationship has its ups and downs. Discover how couples counseling can provide a safe space for communication, understanding, and healing.',
-    image: 'https://images.unsplash.com/photo-1567443024551-f3e291257163?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://picsum.photos/seed/blog4/600/400',
     imageHint: 'couple talking together',
     tags: ['Relationships', 'Couples Therapy'],
     content: `
