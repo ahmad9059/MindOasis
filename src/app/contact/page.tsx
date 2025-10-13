@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { Footer } from '@/components/footer';
 
 export default function ContactPage() {
   return (
@@ -91,11 +92,7 @@ export default function ContactPage() {
             </div>
         </div>
       </main>
-       <footer className="border-t bg-secondary mt-12">
-        <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. All Rights Reserved.</p>
-        </div>
-      </footer>
+       <Footer />
     </div>
   );
 }

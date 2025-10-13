@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import { Header } from '@/components/header';
 import { Badge } from '@/components/ui/badge';
 import { getBlogPosts } from '@/lib/blog';
+import { Footer } from '@/components/footer';
 
 export default function BlogPostPage({ params }: { params: { id: string } }) {
   const post = getBlogPosts().find((p) => p.id.toString() === params.id);
@@ -54,11 +55,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
           </div>
         </article>
       </main>
-      <footer className="border-t bg-secondary mt-12">
-        <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

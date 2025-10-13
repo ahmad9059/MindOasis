@@ -6,6 +6,7 @@ import { ArrowRight, CalendarDays } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getBlogPosts } from '@/lib/blog';
+import { Footer } from '@/components/footer';
 
 export default function BlogPage() {
   const blogPosts = getBlogPosts();
@@ -55,11 +56,7 @@ export default function BlogPage() {
           ))}
         </div>
       </main>
-      <footer className="border-t bg-secondary">
-        <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

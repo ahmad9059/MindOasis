@@ -1,9 +1,10 @@
 import { Header } from '@/components/header';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { CheckCircle, HeartHandshake, Users, Scale, Eye } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Footer } from '@/components/footer';
 
 export default function AboutPage() {
     const aboutImage = PlaceHolderImages.find((img) => img.id === 'about-us-image');
@@ -98,11 +99,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <footer className="border-t bg-secondary">
-        <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. A Hackathon Project.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

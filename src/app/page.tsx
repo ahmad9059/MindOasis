@@ -1,7 +1,7 @@
 
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import {
   ArrowRight,
@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Logo } from "@/components/logo";
 import { Header } from "@/components/header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   const aboutImage = PlaceHolderImages.find(
@@ -216,7 +216,7 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
+               {testimonials.map((testimonial, index) => (
                 <Card key={index} className="p-6">
                   <CardContent className="p-0 flex items-start gap-4">
                     <Avatar className="w-12 h-12 flex-shrink-0">
@@ -275,15 +275,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t bg-secondary">
-        <div className="container py-6 text-center text-muted-foreground text-sm">
-          <p>
-            &copy; {new Date().getFullYear()} Mind Oasis. A Hackathon
-            Project.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
