@@ -46,10 +46,7 @@ const recommendTherapistFlow = ai.defineFlow(
 - Your primary goal is to empower the user to use the search tools, not to be a therapist yourself.
 `;
     
-    const llm = ai.getModel('googleai/gemini-2.5-flash');
-
     const response = await ai.generate({
-        model: llm,
         history: [
             ...toGenkitHistory(history),
             { role: 'user', content: [{ text: query }] }
