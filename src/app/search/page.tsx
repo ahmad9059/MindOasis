@@ -1,13 +1,12 @@
 'use client';
 
-import { Suspense, useEffect, useState, useMemo, useTransition, FormEvent } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { Suspense, useMemo, useTransition } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import therapistsData from '@/data/therapists.json';
 import type { Therapist, FilterOptions } from '@/lib/types';
 import { experienceLevels, feeRanges } from '@/lib/types';
 
-import { Input } from '@/components/ui/input';
 import { TherapistFilters } from '@/components/therapist-filters';
 import { TherapistList } from '@/components/therapist-list';
 import { TherapistDetailModal } from '@/components/therapist-detail-modal';
@@ -15,43 +14,17 @@ import Loading from './loading';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Filter, Search } from 'lucide-react';
+import { Filter } from 'lucide-react';
+import { SmartSearchBar } from '@/components/smart-search-bar';
+import { useState } from 'react';
 
 function SearchPageContent() {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
-  const [isPending, startTransition] = useTransition();
+  const [isPending] = useTransition();
 
-  // The active search term from the URL, used for filtering.
   const searchTerm = searchParams.get('q') || '';
   
-  // Local state for the input, controlled directly by the user typing.
-  // This prevents focus loss on re-renders.
-  const [inputValue, setInputValue] = useState(searchTerm);
-
-  // Sync input field if URL changes (e.g. back/forward browser buttons)
-  useEffect(() => {
-    setInputValue(searchTerm);
-  }, [searchTerm]);
-
-  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const params = new URLSearchParams(searchParams.toString());
-    if (inputValue) {
-      params.set('q', inputValue);
-    } else {
-      params.delete('q');
-    }
-    
-    startTransition(() => {
-      // Replace the URL, which will trigger a re-render with the new
-      // `searchParams` and filter the results.
-      router.replace(`${pathname}?${params.toString()}`);
-    });
-  };
-
   const filterOptions = useMemo((): FilterOptions => {
     const cities = new Map<string, number>();
     const genders = new Map<string, number>();
@@ -148,21 +121,6 @@ function SearchPageContent() {
   const handleCloseModal = () => {
     setSelectedTherapist(null);
   };
-
-  const SmartSearchBar = () => {
-    return (
-        <form onSubmit={handleSearchSubmit} className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Smart Search: by name, expertise, or issue..."
-              className="w-full pl-10"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-        </form>
-    );
-  }
 
   return (
     <>
