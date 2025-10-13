@@ -1,9 +1,8 @@
 
 'use client';
 
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState, useMemo, useTransition, FormEvent } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { useState, useMemo, useTransition } from 'react';
 
 import therapistsData from '@/data/therapists.json';
 import type { Therapist, FilterOptions } from '@/lib/types';
@@ -18,7 +17,6 @@ import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Filter, Search } from 'lucide-react';
-import { useDebounce } from '@/hooks/use-debounce';
 
 function SearchPageContent() {
   const router = useRouter();
@@ -27,13 +25,22 @@ function SearchPageContent() {
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  // Local state for the input, controlled directly by the user typing.
+  const [inputValue, setInputValue] = useState(searchParams.get('q') || '');
+  
+  // The active search term, only updated when the form is submitted.
+  const searchTerm = searchParams.get('q') || '';
 
+  // Sync input field if URL is changed directly (e.g. back/forward browser buttons)
   useEffect(() => {
+    setInputValue(searchTerm);
+  }, [searchTerm]);
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const params = new URLSearchParams(window.location.search);
-    if (debouncedSearchTerm) {
-      params.set('q', debouncedSearchTerm);
+    if (inputValue) {
+      params.set('q', inputValue);
     } else {
       params.delete('q');
     }
@@ -41,7 +48,7 @@ function SearchPageContent() {
     startTransition(() => {
         router.replace(`${pathname}?${params.toString()}`);
     });
-  }, [debouncedSearchTerm, pathname, router]);
+  };
 
   const filterOptions = useMemo((): FilterOptions => {
     const cities = new Map<string, number>();
@@ -66,7 +73,7 @@ function SearchPageContent() {
   }, []);
   
   const filteredTherapists = useMemo(() => {
-    const query = searchParams.get('q')?.toLowerCase() || '';
+    const query = searchTerm.toLowerCase();
     const selectedCities = searchParams.get('cities')?.split(',') || [];
     const selectedGenders = searchParams.get('genders')?.split(',') || [];
     const selectedModes = searchParams.get('modes')?.split(',') || [];
@@ -130,7 +137,7 @@ function SearchPageContent() {
 
       return true;
     });
-  }, [searchParams]);
+  }, [searchTerm, searchParams]);
 
   const handleViewDetails = (therapist: Therapist) => {
     setSelectedTherapist(therapist);
@@ -142,16 +149,16 @@ function SearchPageContent() {
 
   const SmartSearchBar = () => {
     return (
-        <div className="relative w-full">
+        <form onSubmit={handleSearchSubmit} className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
-            type="search"
-            placeholder="Smart Search: by name, expertise, or issue..."
-            className="w-full pl-10"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+              type="search"
+              placeholder="Smart Search: by name, expertise, or issue..."
+              className="w-full pl-10"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-        </div>
+        </form>
     );
   }
 
