@@ -19,7 +19,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { type Therapist } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import { X, MapPin, Phone, Mail, User, Briefcase, GraduationCap, Info, MessageSquare, Handshake, BrainCircuit } from 'lucide-react';
+import { X, MapPin, Phone, Mail, User, Briefcase, GraduationCap, Info, Handshake, BrainCircuit, Sparkles } from 'lucide-react';
 import { AiSummary } from './ai-summary';
 
 interface TherapistDetailModalProps {
