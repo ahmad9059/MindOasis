@@ -57,9 +57,9 @@ export function Footer() {
           {/* Column 4: Social */}
           <div>
             <h3 className="font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
                 {socialLinks.map((link) => (
-                    <Button key={link.label} asChild variant="ghost" size="icon">
+                    <Button key={link.label} asChild variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
                         <a href={link.href} aria-label={link.label}>
                             {link.icon}
                         </a>
