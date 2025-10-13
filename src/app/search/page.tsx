@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo, useTransition } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import therapistsData from '@/data/therapists.json';
@@ -16,12 +16,10 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Filter } from 'lucide-react';
 import { SmartSearchBar } from '@/components/smart-search-bar';
-import { useState } from 'react';
 
 function SearchPageContent() {
   const searchParams = useSearchParams();
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
-  const [isPending] = useTransition();
 
   const searchTerm = searchParams.get('q') || '';
   
@@ -130,7 +128,7 @@ function SearchPageContent() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
             {/* Mobile filter sheet */}
             <div className="lg:hidden flex justify-between items-center gap-4">
-                <div className="flex-grow"><SmartSearchBar /></div>
+                <div className="flex-grow"><SmartSearchBar allTherapists={therapistsData as Therapist[]} /></div>
                 <Sheet>
                     <SheetTrigger asChild>
                     <Button variant="outline" className="shrink-0">
@@ -152,9 +150,9 @@ function SearchPageContent() {
             {/* Results */}
             <div className="w-full lg:w-3/4 xl:w-4/5">
               <div className="mb-6 space-y-4">
-                <div className="hidden lg:block"><SmartSearchBar /></div>
+                <div className="hidden lg:block"><SmartSearchBar allTherapists={therapistsData as Therapist[]} /></div>
                 <h2 className="text-xl font-semibold">
-                  {isPending ? 'Searching...' : `${filteredTherapists.length} therapists found`}
+                  {`${filteredTherapists.length} therapists found`}
                 </h2>
               </div>
               <TherapistList therapists={filteredTherapists} onViewDetails={handleViewDetails} />
