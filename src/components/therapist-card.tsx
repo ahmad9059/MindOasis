@@ -29,7 +29,7 @@ export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) 
           />
         )}
         <div className="flex-1">
-          <CardTitle className="text-xl font-headline mb-1">{therapist.name}</CardTitle>
+          <CardTitle className="text-xl mb-1">{therapist.name}</CardTitle>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <MapPin className="h-4 w-4" />
             <span>{therapist.city}</span>
@@ -52,7 +52,7 @@ export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) 
             ))}
         </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center bg-secondary/50">
+      <CardFooter className="p-4 pt-0 flex justify-between items-center bg-card">
         <div className="font-semibold text-primary">
             {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             <span className="text-xs font-normal text-muted-foreground">/session</span>

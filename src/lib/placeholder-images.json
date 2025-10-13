@@ -3,7 +3,7 @@
     {
       "id": "therapist-avatar",
       "description": "Default avatar for a therapist",
-      "imageUrl": "https://picsum.photos/seed/avatar/200/200",
+      "imageUrl": "https://picsum.photos/seed/p-avatar/200/200",
       "imageHint": "portrait professional"
     },
     {
