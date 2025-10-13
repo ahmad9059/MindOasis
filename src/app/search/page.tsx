@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Suspense, useEffect, useState, useMemo, useTransition, FormEvent } from 'react';
@@ -25,11 +24,11 @@ function SearchPageContent() {
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // The active search term from the URL.
+  // The active search term from the URL, used for filtering.
   const searchTerm = searchParams.get('q') || '';
   
   // Local state for the input, controlled directly by the user typing.
-  // This is initialized with the searchTerm from the URL to keep them in sync.
+  // This prevents focus loss on re-renders.
   const [inputValue, setInputValue] = useState(searchTerm);
 
   // Sync input field if URL changes (e.g. back/forward browser buttons)
@@ -47,9 +46,8 @@ function SearchPageContent() {
     }
     
     startTransition(() => {
-      // Replace the URL without reloading the page.
-      // The re-render will happen, but because `inputValue` controls the input,
-      // focus will not be lost.
+      // Replace the URL, which will trigger a re-render with the new
+      // `searchParams` and filter the results.
       router.replace(`${pathname}?${params.toString()}`);
     });
   };
