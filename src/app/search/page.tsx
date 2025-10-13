@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, FormEvent } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useState, useMemo, useTransition } from 'react';
 
@@ -26,20 +26,27 @@ function SearchPageContent() {
   const searchParams = useSearchParams();
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
   const [isPending, startTransition] = useTransition();
-  const [query, setQuery] = useState(searchParams.get('q') || '');
-  const debouncedQuery = useDebounce(query, 300);
 
-  useEffect(() => {
+  // Use a local state for the input value to avoid re-renders on every keystroke
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
+
+  const handleSearch = (term: string) => {
     startTransition(() => {
       const params = new URLSearchParams(window.location.search);
-      if (debouncedQuery) {
-        params.set('q', debouncedQuery);
+      if (term) {
+        params.set('q', term);
       } else {
         params.delete('q');
       }
       router.replace(`${pathname}?${params.toString()}`);
     });
-  }, [debouncedQuery, router, pathname]);
+  };
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSearch(searchTerm);
+  };
+  
 
   const filterOptions = useMemo((): FilterOptions => {
     const cities = new Map<string, number>();
@@ -64,7 +71,7 @@ function SearchPageContent() {
   }, []);
   
   const filteredTherapists = useMemo(() => {
-    const searchTerm = searchParams.get('q')?.toLowerCase() || '';
+    const query = searchParams.get('q')?.toLowerCase() || '';
     const selectedCities = searchParams.get('cities')?.split(',') || [];
     const selectedGenders = searchParams.get('genders')?.split(',') || [];
     const selectedModes = searchParams.get('modes')?.split(',') || [];
@@ -74,14 +81,14 @@ function SearchPageContent() {
 
     return (therapistsData as Therapist[]).filter(therapist => {
       // Search term filter
-      if (searchTerm) {
+      if (query) {
         const searchableContent = [
           therapist.name,
           therapist.expertise,
           therapist.education,
           therapist.about,
         ].join(' ').toLowerCase();
-        if (!searchableContent.includes(searchTerm)) {
+        if (!searchableContent.includes(query)) {
           return false;
         }
       }
@@ -140,16 +147,17 @@ function SearchPageContent() {
 
   const SmartSearchBar = () => {
     return (
-      <div className="relative w-full">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-        <Input
-          type="search"
-          placeholder="Smart Search: by name, expertise, or issue..."
-          className="w-full pl-10"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </div>
+        <form onSubmit={handleFormSubmit} className="relative w-full">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+            type="search"
+            placeholder="Smart Search: by name, expertise, or issue..."
+            className="w-full pl-10"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onBlur={() => handleSearch(searchTerm)} // Optional: search when user clicks away
+            />
+        </form>
     );
   }
 
