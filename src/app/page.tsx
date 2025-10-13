@@ -209,11 +209,11 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-16 sm:py-24 bg-secondary">
           <div className="container">
-            <div className="text-center mb-12">
+            <div className="text-left mb-12">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Trusted by Users Across Pakistan
               </h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
                 See how MindCare is helping people find the support they need.
               </p>
             </div>
