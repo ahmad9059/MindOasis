@@ -49,13 +49,9 @@ const recommendTherapistFlow = ai.defineFlow(
     const response = await ai.generate({
         history: [
             ...toGenkitHistory(history),
-            { role: 'user', content: [{ text: query }] }
         ],
         prompt: query,
-        config: {
-            // Prepend the system prompt to the model
-            system: systemPrompt,
-        }
+        system: systemPrompt,
     });
 
     return {
