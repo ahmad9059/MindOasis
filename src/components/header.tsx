@@ -6,9 +6,9 @@ import { ArrowRight, FileText, Info, Mail } from 'lucide-react';
 
 export function Header() {
   const navLinks = [
-    { href: '/about', label: 'About', icon: <Info /> },
-    { href: '/blog', label: 'Blog', icon: <FileText /> },
-    { href: '/contact', label: 'Contact', icon: <Mail /> },
+    { href: '/about', label: 'About', icon: <Info className="size-4" /> },
+    { href: '/blog', label: 'Blog', icon: <FileText className="size-4" /> },
+    { href: '/contact', label: 'Contact', icon: <Mail className="size-4" /> },
   ];
 
   return (
