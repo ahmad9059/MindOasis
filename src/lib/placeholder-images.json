@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "therapist-avatar",
+      "description": "Default avatar for a therapist",
+      "imageUrl": "https://picsum.photos/seed/avatar/200/200",
+      "imageHint": "portrait professional"
+    },
+    {
+      "id": "hero-background",
+      "description": "Serene background for the landing page hero section",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageHint": "serene landscape"
+    }
+  ]
 }
