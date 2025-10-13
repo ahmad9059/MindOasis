@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Suspense, useEffect, FormEvent } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useState, useMemo, useTransition } from 'react';
 
@@ -27,26 +27,21 @@ function SearchPageContent() {
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // Use a local state for the input value to avoid re-renders on every keystroke
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  const handleSearch = (term: string) => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (debouncedSearchTerm) {
+      params.set('q', debouncedSearchTerm);
+    } else {
+      params.delete('q');
+    }
+    
     startTransition(() => {
-      const params = new URLSearchParams(window.location.search);
-      if (term) {
-        params.set('q', term);
-      } else {
-        params.delete('q');
-      }
-      router.replace(`${pathname}?${params.toString()}`);
+        router.replace(`${pathname}?${params.toString()}`);
     });
-  };
-
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    handleSearch(searchTerm);
-  };
-  
+  }, [debouncedSearchTerm, pathname, router]);
 
   const filterOptions = useMemo((): FilterOptions => {
     const cities = new Map<string, number>();
@@ -147,7 +142,7 @@ function SearchPageContent() {
 
   const SmartSearchBar = () => {
     return (
-        <form onSubmit={handleFormSubmit} className="relative w-full">
+        <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
             type="search"
@@ -155,9 +150,8 @@ function SearchPageContent() {
             className="w-full pl-10"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onBlur={() => handleSearch(searchTerm)} // Optional: search when user clicks away
             />
-        </form>
+        </div>
     );
   }
 
