@@ -1,22 +1,28 @@
-'use client';
+"use client";
 
-import { useState, useTransition, useRef, useEffect } from 'react';
-import { Bot, X, MessageSquare, Loader2, User } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { recommendTherapist } from '@/ai/flows/recommend-therapist';
-import { cn } from '@/lib/utils';
-import { Avatar, AvatarFallback } from './ui/avatar';
-import { useToast } from '@/hooks/use-toast';
-import therapistsData from '@/data/therapists.json';
-import type { Therapist } from '@/lib/types';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useTransition, useRef, useEffect } from "react";
+import { Bot, X, MessageSquare, Loader2, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { recommendTherapist } from "@/ai/flows/recommend-therapist";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { useToast } from "@/hooks/use-toast";
+import therapistsData from "@/data/therapists.json";
+import type { Therapist } from "@/lib/types";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
 }
 
@@ -24,18 +30,20 @@ export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      role: 'assistant',
-      content: "Hello! I'm here to help you find the right therapist. What challenges are you facing right now?",
+      role: "assistant",
+      content:
+        "Hello! I'm here to help you find the right therapist. What challenges are you facing right now?",
     },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isPending, startTransition] = useTransition();
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
@@ -45,27 +53,31 @@ export function Chatbot() {
     e.preventDefault();
     if (!input.trim() || isPending) return;
 
-    const userMessage: Message = { role: 'user', content: input };
+    const userMessage: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
 
     startTransition(async () => {
       try {
-        const result = await recommendTherapist({ 
-          query: input, 
+        const result = await recommendTherapist({
+          query: input,
           history: messages,
           therapists: therapistsData as Therapist[],
         });
-        setMessages((prev) => [...prev, { role: 'assistant', content: result.recommendation }]);
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: result.recommendation },
+        ]);
       } catch (error) {
-        console.error('Chatbot error:', error);
+        console.error("Chatbot error:", error);
         toast({
-          variant: 'destructive',
-          title: 'Oh no!',
-          description: 'There was an issue with the AI Assistant. Please try again.',
+          variant: "destructive",
+          title: "Oh no!",
+          description:
+            "There was an issue with the AI Assistant. Please try again.",
         });
         // Revert user message on error
-        setMessages(prev => prev.slice(0, -1));
+        setMessages((prev) => prev.slice(0, -1));
       }
     });
   };
@@ -73,7 +85,11 @@ export function Chatbot() {
   return (
     <>
       <div className="fixed bottom-6 right-6 z-50">
-        <Button onClick={toggleChat} size="icon" className="h-16 w-16 rounded-full shadow-lg">
+        <Button
+          onClick={toggleChat}
+          size="icon"
+          className="h-16 w-16 rounded-full shadow-lg"
+        >
           {isOpen ? <X className="h-8 w-8" /> : <Bot className="h-8 w-8" />}
           <span className="sr-only">Toggle Chat</span>
         </Button>
@@ -84,7 +100,7 @@ export function Chatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed bottom-24 right-6 z-50 w-full max-w-sm"
           >
             <Card className="flex flex-col shadow-2xl rounded-lg h-[600px] overflow-hidden">
@@ -94,16 +110,19 @@ export function Chatbot() {
                   <CardTitle className="text-lg">AI Assistant</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
+              <CardContent
+                ref={chatContainerRef}
+                className="flex-1 overflow-y-auto p-4 space-y-4"
+              >
                 {messages.map((message, index) => (
                   <div
                     key={index}
                     className={cn(
-                      'flex items-start gap-3',
-                      message.role === 'user' ? 'justify-end' : 'justify-start'
+                      "flex items-start gap-3",
+                      message.role === "user" ? "justify-end" : "justify-start",
                     )}
                   >
-                    {message.role === 'assistant' && (
+                    {message.role === "assistant" && (
                       <Avatar className="h-8 w-8">
                         <AvatarFallback>
                           <Bot className="h-5 w-5" />
@@ -112,16 +131,18 @@ export function Chatbot() {
                     )}
                     <div
                       className={cn(
-                        'max-w-[80%] rounded-lg p-3 text-sm prose dark:prose-invert',
-                        'prose-p:my-0 prose-ul:my-0 prose-ol:my-0',
-                        message.role === 'user'
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-secondary'
+                        "max-w-[80%] rounded-lg p-3 text-sm prose dark:prose-invert",
+                        "prose-p:my-0 prose-ul:my-0 prose-ol:my-0",
+                        message.role === "user"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary",
                       )}
                     >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
-                    {message.role === 'user' && (
+                    {message.role === "user" && (
                       <Avatar className="h-8 w-8">
                         <AvatarFallback>
                           <User className="h-5 w-5" />
@@ -133,18 +154,21 @@ export function Chatbot() {
                 {isPending && (
                   <div className="flex items-center gap-3">
                     <Avatar className="h-8 w-8">
-                        <AvatarFallback>
-                          <Bot className="h-5 w-5" />
-                        </AvatarFallback>
-                      </Avatar>
+                      <AvatarFallback>
+                        <Bot className="h-5 w-5" />
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="bg-secondary p-3 rounded-lg">
-                        <Loader2 className="h-5 w-5 animate-spin" />
+                      <Loader2 className="h-5 w-5 animate-spin" />
                     </div>
                   </div>
                 )}
               </CardContent>
-              <CardFooter className='p-4 border-t'>
-                <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
+              <CardFooter className="p-4 border-t">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex w-full items-center space-x-2"
+                >
                   <Input
                     id="message"
                     placeholder="Type your message..."
@@ -154,7 +178,11 @@ export function Chatbot() {
                     onChange={(e) => setInput(e.target.value)}
                     disabled={isPending}
                   />
-                  <Button type="submit" size="icon" disabled={isPending || !input.trim()}>
+                  <Button
+                    type="submit"
+                    size="icon"
+                    disabled={isPending || !input.trim()}
+                  >
                     <MessageSquare className="h-4 w-4" />
                     <span className="sr-only">Send</span>
                   </Button>
