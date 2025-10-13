@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogClose,
 } from '@/components/ui/dialog';
 import {
   Accordion,
@@ -19,7 +18,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { type Therapist } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import { X, MapPin, Phone, Mail, User, Briefcase, GraduationCap, Info, Handshake, BrainCircuit, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Mail, User, Briefcase, GraduationCap, Info, Handshake, BrainCircuit, Sparkles } from 'lucide-react';
 import { AiSummary } from './ai-summary';
 
 interface TherapistDetailModalProps {
@@ -70,14 +69,10 @@ export function TherapistDetailModal({ therapist, isOpen, onClose }: TherapistDe
               </div>
             </div>
           </div>
-          <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </DialogClose>
         </DialogHeader>
 
         <div className="flex-grow overflow-y-auto px-6 pb-4">
-            <div className="my-4 grid grid-cols-1 sm:grid-cols-3 gap-2 rounded-lg border p-2">
+            <div className="my-4 grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-lg border p-2">
                 <div className="p-2 rounded flex items-center gap-3">
                     <Phone className="h-5 w-5 text-primary"/>
                     <div>
@@ -90,13 +85,6 @@ export function TherapistDetailModal({ therapist, isOpen, onClose }: TherapistDe
                     <div>
                         <div className="text-xs text-muted-foreground">Email</div>
                         <a href={`mailto:${therapist.email}`} className="text-sm font-medium hover:underline truncate">{therapist.email || 'Not available'}</a>
-                    </div>
-                </div>
-                <div className="p-2 rounded flex items-center gap-3">
-                    <div className="text-2xl font-bold text-primary">{formatCurrency(therapist.feeAmount, therapist.feeCurrency)}</div>
-                    <div>
-                        <div className="text-xs text-muted-foreground">Fee</div>
-                        <div className="text-sm font-medium">per session</div>
                     </div>
                 </div>
             </div>
@@ -149,22 +137,23 @@ export function TherapistDetailModal({ therapist, isOpen, onClose }: TherapistDe
             </Accordion>
         </div>
 
-        <div className="p-6 pt-0 mt-auto bg-card border-t flex flex-col sm:flex-row gap-2">
-          {therapist.phone && (
-            <Button asChild className="flex-1" size="lg">
-              <a href={`tel:${therapist.phone}`}><Phone className="mr-2 h-4 w-4" /> Call Now</a>
-            </Button>
-          )}
-          {therapist.email && (
-            <Button asChild variant="secondary" className="flex-1" size="lg">
-              <a href={`mailto:${therapist.email}`}><Mail className="mr-2 h-4 w-4" /> Send Email</a>
-            </Button>
-          )}
-          {therapist.profileUrl && (
-            <Button asChild variant="ghost" className="flex-1" size="lg">
-                <a href={therapist.profileUrl} target="_blank" rel="noopener noreferrer">Visit Profile</a>
-            </Button>
-          )}
+        <div className="p-6 pt-0 mt-auto bg-card border-t flex flex-col sm:flex-row gap-2 items-center">
+            <div className="flex-1 text-center sm:text-left">
+                <div className="text-xl font-bold text-primary">{formatCurrency(therapist.feeAmount, therapist.feeCurrency)}</div>
+                <div className="text-xs text-muted-foreground">per session</div>
+            </div>
+            <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full">
+              {therapist.phone && (
+                <Button asChild className="flex-1" size="lg">
+                  <a href={`tel:${therapist.phone}`}><Phone className="mr-2 h-4 w-4" /> Call Now</a>
+                </Button>
+              )}
+              {therapist.email && (
+                <Button asChild variant="secondary" className="flex-1" size="lg">
+                  <a href={`mailto:${therapist.email}`}><Mail className="mr-2 h-4 w-4" /> Send Email</a>
+                </Button>
+              )}
+            </div>
         </div>
       </DialogContent>
     </Dialog>

@@ -52,7 +52,7 @@ export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) 
             ))}
         </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center bg-card">
+      <CardFooter className="p-4 flex justify-between items-center bg-card border-t">
         <div className="font-semibold text-primary">
             {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             <span className="text-xs font-normal text-muted-foreground">/session</span>
