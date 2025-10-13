@@ -47,13 +47,34 @@ const ChatMessageSchema = z.object({
   content: z.string(),
 });
 
+export const TherapistSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  profileUrl: z.string().nullable(),
+  gender: z.enum(['Male', 'Female']).nullable(),
+  city: z.string(),
+  experienceYears: z.number().nullable(),
+  email: z.string().nullable(),
+  phone: z.string().nullable(),
+  modes: z.array(z.string()),
+  education: z.string().nullable(),
+  experience: z.string().nullable(),
+  expertise: z.string().nullable(),
+  about: z.string().nullable(),
+  feeAmount: z.number().nullable(),
+  feeCurrency: z.string().nullable(),
+  rating: z.number().nullable().optional(),
+});
+
+
 export const RecommendTherapistInputSchema = z.object({
   query: z.string().describe("The user's latest message or question."),
   history: z.array(ChatMessageSchema).describe('The conversation history so far.'),
+  therapists: z.array(TherapistSchema).describe('A list of available therapists.'),
 });
 export type RecommendTherapistInput = z.infer<typeof RecommendTherapistInputSchema>;
 
 export const RecommendTherapistOutputSchema = z.object({
-  recommendation: z.string().describe("The AI's response to the user's query."),
+  recommendation: z.string().describe("The AI's response to the user's query, formatted in Markdown."),
 });
 export type RecommendTherapistOutput = z.infer<typeof RecommendTherapistOutputSchema>;

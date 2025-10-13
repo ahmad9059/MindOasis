@@ -10,6 +10,10 @@ import { recommendTherapist } from '@/ai/flows/recommend-therapist';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { useToast } from '@/hooks/use-toast';
+import therapistsData from '@/data/therapists.json';
+import type { Therapist } from '@/lib/types';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -27,6 +31,7 @@ export function Chatbot() {
   const [input, setInput] = useState('');
   const [isPending, startTransition] = useTransition();
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -46,7 +51,11 @@ export function Chatbot() {
 
     startTransition(async () => {
       try {
-        const result = await recommendTherapist({ query: input, history: messages });
+        const result = await recommendTherapist({ 
+          query: input, 
+          history: messages,
+          therapists: therapistsData as Therapist[],
+        });
         setMessages((prev) => [...prev, { role: 'assistant', content: result.recommendation }]);
       } catch (error) {
         console.error('Chatbot error:', error);
@@ -55,7 +64,7 @@ export function Chatbot() {
           title: 'Oh no!',
           description: 'There was an issue with the AI Assistant. Please try again.',
         });
-        // Revert user message on error if desired
+        // Revert user message on error
         setMessages(prev => prev.slice(0, -1));
       }
     });
@@ -95,13 +104,14 @@ export function Chatbot() {
                 )}
                 <div
                   className={cn(
-                    'max-w-[80%] rounded-lg p-3 text-sm',
+                    'max-w-[80%] rounded-lg p-3 text-sm prose dark:prose-invert',
+                    'prose-p:my-0 prose-ul:my-0 prose-ol:my-0',
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-secondary'
                   )}
                 >
-                  <p>{message.content}</p>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
                 </div>
                  {message.role === 'user' && (
                   <Avatar className="h-8 w-8">
