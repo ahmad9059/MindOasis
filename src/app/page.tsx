@@ -188,7 +188,7 @@ export default function Home() {
               <div className="relative h-96 w-full">
                 {aboutImage && (
                   <Image
-                    src="/hero.jpg"
+                    src="/hero.svg"
                     alt={aboutImage.description}
                     fill
                     className="object-contain rounded-lg"
