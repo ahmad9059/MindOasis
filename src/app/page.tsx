@@ -52,21 +52,21 @@ export default function Home() {
         "Mind Oasis helped me find a therapist who truly understands me. The process was simple and stress-free.",
       author: "Aisha K.",
       location: "Lahore",
-      avatar: "https://picsum.photos/seed/user1/100/100",
+      avatar: "https://randomuser.me/api/portraits/women/18.jpg",
     },
     {
       quote:
         "The AI summaries are a game-changer. I could quickly get a sense of each therapist's approach and specialty.",
       author: "Bilal S.",
       location: "Karachi",
-      avatar: "https://picsum.photos/seed/user2/100/100",
+      avatar: "https://randomuser.me/api/portraits/men/18.jpg",
     },
     {
       quote:
         "Finally, a platform that understands the mental health landscape in Pakistan. Highly recommended!",
-      author: "Fatima Z.",
+      author: "Ahmad Z.",
       location: "Islamabad",
-      avatar: "https://picsum.photos/seed/user3/100/100",
+      avatar: "https://randomuser.me/api/portraits/men/1.jpg",
     },
   ];
 
