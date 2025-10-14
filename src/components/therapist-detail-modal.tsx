@@ -46,6 +46,8 @@ export function TherapistDetailModal({
   if (!therapist) return null;
 
   const avatar = PlaceHolderImages.find((img) => img.id === "therapist-avatar");
+  const imageUrl = `https://picsum.photos/seed/${therapist.id}/200/200`;
+
 
   const detailItems = [
     {
@@ -70,16 +72,14 @@ export function TherapistDetailModal({
             {therapist.name}'s Profile
           </DialogTitle>
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            {avatar && (
-              <Image
-                src={avatar.imageUrl}
+            <Image
+                src={imageUrl}
                 alt={therapist.name}
                 width={120}
                 height={120}
                 className="rounded-lg border-4 border-card object-cover shadow-md"
-                data-ai-hint={avatar.imageHint}
+                data-ai-hint={avatar?.imageHint || 'portrait professional'}
               />
-            )}
             <div className="flex-1">
               <h2 className="text-3xl font-headline font-bold text-primary">
                 {therapist.name}
@@ -222,23 +222,23 @@ export function TherapistDetailModal({
           </Accordion>
         </div>
 
-        <div className="p-6 mt-auto bg-card border-t flex flex-wrap gap-4 items-center rounded-b-lg">
+        <div className="p-6 mt-auto bg-card border-t flex flex-col sm:flex-row gap-4 items-center rounded-b-lg">
           <div className="flex-1">
             <div className="text-xl font-bold text-primary">
               {formatCurrency(therapist.feeAmount, therapist.feeCurrency)}
             </div>
             <div className="text-xs text-muted-foreground">per session</div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full sm:w-auto">
             {therapist.phone && (
-              <Button asChild>
+              <Button asChild className="flex-1">
                 <a href={`tel:${therapist.phone}`}>
                   <Phone className="mr-2 h-4 w-4" /> Call Now
                 </a>
               </Button>
             )}
             {therapist.email && (
-              <Button asChild variant="secondary">
+              <Button asChild variant="secondary" className="flex-1">
                 <a href={`mailto:${therapist.email}`}>
                   <Mail className="mr-2 h-4 w-4" /> Send Email
                 </a>

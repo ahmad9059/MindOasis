@@ -14,20 +14,19 @@ interface TherapistCardProps {
 
 export function TherapistCard({ therapist, onViewDetails }: TherapistCardProps) {
   const avatar = PlaceHolderImages.find((img) => img.id === 'therapist-avatar');
+  const imageUrl = `https://picsum.photos/seed/${therapist.id}/200/200`;
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card">
       <CardHeader className="flex flex-row items-start gap-4 p-4">
-        {avatar && (
-          <Image
-            src={avatar.imageUrl}
-            alt={therapist.name}
-            width={80}
-            height={80}
-            className="rounded-full border-2 border-primary/20 object-cover"
-            data-ai-hint={avatar.imageHint}
-          />
-        )}
+        <Image
+          src={imageUrl}
+          alt={therapist.name}
+          width={80}
+          height={80}
+          className="rounded-full border-2 border-primary/20 object-cover"
+          data-ai-hint={avatar?.imageHint || 'portrait professional'}
+        />
         <div className="flex-1">
           <CardTitle className="text-xl mb-1">{therapist.name}</CardTitle>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">

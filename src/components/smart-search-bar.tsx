@@ -19,7 +19,7 @@ export function SmartSearchBar({ allTherapists }: SmartSearchBarProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentSearchTerm = searchParams.get('q') || '';
-  const avatar = PlaceHolderImages.find((img) => img.id === 'therapist-avatar');
+  const avatarHint = PlaceHolderImages.find((img) => img.id === 'therapist-avatar')?.imageHint;
 
   const [inputValue, setInputValue] = useState(currentSearchTerm);
   const [suggestions, setSuggestions] = useState<Therapist[]>([]);
@@ -106,12 +106,10 @@ export function SmartSearchBar({ allTherapists }: SmartSearchBarProps) {
                             <Link href={`/search?q=${encodeURIComponent(therapist.name)}`}
                                   onClick={() => setIsFocused(false)}
                                   className="flex items-center gap-3 p-3 hover:bg-accent transition-colors">
-                                {avatar && (
-                                    <Avatar className="h-9 w-9">
-                                        <AvatarImage src={avatar.imageUrl} alt={therapist.name} data-ai-hint={avatar.imageHint} />
-                                        <AvatarFallback><User className="h-5 w-5" /></AvatarFallback>
-                                    </Avatar>
-                                )}
+                                <Avatar className="h-9 w-9">
+                                    <AvatarImage src={`https://picsum.photos/seed/${therapist.id}/40/40`} alt={therapist.name} data-ai-hint={avatarHint || 'portrait professional'} />
+                                    <AvatarFallback><User className="h-5 w-5" /></AvatarFallback>
+                                </Avatar>
                                 <div className="text-sm">
                                     <p className="font-semibold">{therapist.name}</p>
                                     <p className="text-muted-foreground">{therapist.city}</p>
