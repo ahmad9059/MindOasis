@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from './logo';
 import { Button } from './ui/button';
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Github, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   const navLinks = [
@@ -16,6 +16,7 @@ export function Footer() {
     { href: '#', icon: <Facebook className="h-5 w-5" />, label: 'Facebook' },
     { href: '#', icon: <Twitter className="h-5 w-5" />, label: 'Twitter' },
     { href: '#', icon: <Linkedin className="h-5 w-5" />, label: 'LinkedIn' },
+    { href: 'https://github.com/ahmad9059', icon: <Github className="h-5 w-5" />, label: 'GitHub' },
   ];
 
   return (
@@ -71,7 +72,18 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Mind Oasis. A Hackathon Project. All Rights Reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Mind Oasis. Made With ❤️ by{' '}
+            <a
+              href="https://github.com/ahmad9059"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              ahmad9059
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>
