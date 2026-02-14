@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from './logo';
 import { Button } from './ui/button';
-import { Facebook, Github, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Github, Heart, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   const navLinks = [
@@ -73,7 +73,9 @@ export function Footer() {
 
         <div className="mt-12 border-t pt-6 text-center text-sm text-muted-foreground">
           <p>
-            &copy; {new Date().getFullYear()} Mind Oasis. Made With ❤️ by{' '}
+            &copy; {new Date().getFullYear()} Mind Oasis. Made With
+            <Heart className="mx-1 inline-block h-4 w-4 fill-[#4881DD] text-[#4881DD] align-[-2px]" aria-hidden="true" />
+            by{' '}
             <a
               href="https://github.com/ahmad9059"
               target="_blank"
